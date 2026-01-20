@@ -1,4 +1,4 @@
-function createProject(projectName) {
+export default function createProject(projectName) {
     let name = projectName;
     let list = [];
 
