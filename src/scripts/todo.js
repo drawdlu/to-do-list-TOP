@@ -1,6 +1,6 @@
 import { parse, isPast } from "date-fns";
 
-export default function createToDoItem(title, description, dueDate) {
+export default function createToDoItem(title, description, dueDate, notes = "") {
     let completed = false;
     let priority = [ "low", "medium", "high"];
     let priorityIndex = 0;
@@ -14,7 +14,7 @@ export default function createToDoItem(title, description, dueDate) {
     return { 
         title: createText(title),
         description: createText(description),
-        notes: createText(""),
+        notes: createText(notes),
         checklist: createChecklist(),
         dueDate: createDate(dueDate),
         get completed() { return completed; },
