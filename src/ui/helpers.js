@@ -63,7 +63,7 @@ export function createList(containerName, listContainerName, list, appendToList)
     return listContainer;
 }
 
-function createLink(text) {
+export function createLink(text) {
     const link = document.createElement("a");
     link.setAttribute("href", "#");
     link.textContent = text;

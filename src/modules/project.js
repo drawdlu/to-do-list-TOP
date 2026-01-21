@@ -1,3 +1,5 @@
+import { events } from "./pubsub";
+
 export default function createProject(projectName) {
     let name = projectName;
     let list = [];
@@ -11,11 +13,15 @@ export default function createProject(projectName) {
         list.splice(itemIndex, 1);
     }
     
-    return {
+    const project =  {
         get name () { return name; },
         get list() { return [...list] },
         editName,
         addItem,
         removeItem
     };
+
+    events.emit("createNewProject", project);
+
+    return project;
 }
