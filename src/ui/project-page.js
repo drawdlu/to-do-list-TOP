@@ -2,7 +2,7 @@ import { format } from "date-fns";
 import createForm from "./todo-form";
 import { createContainer, createButtonField, createList, createItemName } from "./helpers";
 
-function createProjectPage(project) {
+export default function createProjectPage(project) {
     const projectContainer = createContainer("project-container");
     const titleHeading = createProjectHeading(project.name);
     const form = createForm();
@@ -31,7 +31,7 @@ function appendToList(ul, item, containerName) {
 
 function createListItem(title, date, containerName) {
     const itemContainer = createContainer(containerName);
-    const itemName = createItemName(title);
+    const itemName = createItemName("to-do-item", title);
     const itemDate = createItemDate(date);
     const buttons = createButtonField("delete", "Delete");
 
@@ -61,5 +61,3 @@ function createDueDateSpan() {
 
     return span;
 }
-
-export  {createProjectPage}

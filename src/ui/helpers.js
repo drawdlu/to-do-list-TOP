@@ -24,7 +24,7 @@ export function createButtonField(className, text) {
     return container;
 }
 
-function createButton(className, text) {
+export function createButton(className, text) {
     const button = document.createElement("button");
     button.classList.add(className);
     button.textContent = text;
@@ -63,17 +63,9 @@ export function createList(containerName, listContainerName, list, appendToList)
     return listContainer;
 }
 
-export function createLink(text) {
-    const link = document.createElement("a");
-    link.setAttribute("href", "#");
-    link.textContent = text;
-
-    return link;
-}
-
-export function createItemName(title) {
+export function createItemName(className, title) {
     const nameContainer = createContainer("name");
-    const link = createLink(title);
+    const link = createButton(className, title);
 
     nameContainer.append(link);
 

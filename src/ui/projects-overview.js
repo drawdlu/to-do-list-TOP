@@ -16,7 +16,7 @@ function appendToList(ul, item, containerName) {
 
 function createListItem(name, containerName) {
     const itemContainer = createContainer(containerName);
-    const itemName = createItemName(name);
+    const itemName = createItemName("project-name", name);
     const deleteButton = createButtonField("delete", "Delete");
 
     itemContainer.append( itemName, deleteButton);
