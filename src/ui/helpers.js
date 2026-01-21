@@ -15,23 +15,24 @@ export function createInputFormField(id, inputType, labelText) {
     return container;
 }
 
-export function createButtonField(text) {
-    const container = createContainer("button");
-    const button = createButton(text);
+export function createButtonField(className, text) {
+    const container = createContainer("buttons");
+    const button = createButton(className, text);
 
     container.append(button);
 
     return container;
 }
 
-function createButton(text) {
+function createButton(className, text) {
     const button = document.createElement("button");
+    button.classList.add(className);
     button.textContent = text;
 
     return button;
 }
 
-function createLabel(id, text) {
+export function createLabel(id, text) {
     const label = document.createElement("label");
     label.setAttribute("for", id);
     label.textContent = text;
@@ -45,4 +46,37 @@ function createInput(id, type) {
     input.setAttribute("id", id);
 
     return input;
+}
+
+export function createList(containerName, listContainerName, list, appendToList) {
+    const listContainer = createContainer(containerName);
+    const ul = document.createElement("ul");
+
+    if (list.length > 0) {
+        for ( const item of list ) {
+            appendToList(ul, item, listContainerName);
+        }
+    }
+
+    listContainer.append(ul);
+
+    return listContainer;
+}
+
+function createLink(text) {
+    const link = document.createElement("a");
+    link.setAttribute("href", "#");
+    link.textContent = text;
+
+    return link;
+}
+
+export function createItemName(title) {
+    const nameContainer = createContainer("name");
+    const link = createLink(title);
+
+    nameContainer.append(link);
+
+    return nameContainer;
+
 }

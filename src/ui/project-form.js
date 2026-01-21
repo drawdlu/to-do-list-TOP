@@ -3,7 +3,7 @@ import { createContainer, createInputFormField, createButtonField } from "./help
 export default function createProjectForm() {
     const container = createContainer("project-form");
     const nameField = createInputFormField("name", "text", "Project Name: ");
-    const buttonField = createButtonField("Create");
+    const buttonField = createButtonField("create-project", "Create");
 
     container.append(nameField, buttonField);
 
