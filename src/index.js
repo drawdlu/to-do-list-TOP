@@ -1,4 +1,5 @@
 import "./styles.css";
+import { format } from "date-fns";
 
 import createProject from "./modules/project";
 import createToDoItem from "./modules/todo";
@@ -13,3 +14,12 @@ const projectList = [];
 function addToList(project) {
     projectList.push(project);
 }
+
+function createDefaultProject() {
+    const defaultProject = createProject("Default");
+    const currentDate = format(new Date(), "LLLL d, y");
+    const defatultToDo = createToDoItem("Default Task", "This is a sample", currentDate);
+    defaultProject.addItem(defatultToDo);
+}
+
+createDefaultProject();
