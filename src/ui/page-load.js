@@ -47,3 +47,11 @@ function findProject(projectList, text) {
 
     return projectList[index]
 }
+
+export function loadProjectListPage(projectList) {
+    const contentDiv = getContentDiv();
+    const projectListPage = createProjectsOverview(projectList);
+
+    clearDiv(contentDiv);
+    contentDiv.append(projectListPage);
+}

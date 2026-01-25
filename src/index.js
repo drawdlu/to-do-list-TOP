@@ -4,7 +4,7 @@ import { format } from "date-fns";
 import createProject from "./modules/project";
 import createToDoItem from "./modules/todo";
 import { createProjectFromForm } from "./ui/project-form";
-import { findAndLoadPage } from "./ui/page-load";
+import { findAndLoadPage, loadProjectListPage } from "./ui/page-load";
 import { events } from "./modules/pubsub";
 import { addProject } from "./ui/navigation";
 
@@ -25,6 +25,7 @@ function createDefaultProject() {
 }
 
 createDefaultProject();
+loadProjectListPage(projectList);
 
 const nav = document.querySelector("nav");
 
