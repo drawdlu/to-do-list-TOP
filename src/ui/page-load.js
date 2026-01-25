@@ -1,4 +1,4 @@
-import createProjectsOverview from "./projects-overview";
+import { createProjectsOverview } from "./projects-overview";
 import { createProjectPage } from "./project-page";
 import { createProjectForm } from "./project-form";
 import { findProject } from "./helpers";

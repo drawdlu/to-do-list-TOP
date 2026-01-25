@@ -3,12 +3,13 @@ import { format } from "date-fns";
 
 import createProject from "./modules/project";
 import createToDoItem from "./modules/todo";
+import { deleteProject } from "./ui/projects-overview";
 import { createProjectFromForm } from "./ui/project-form";
 import { createToDoFromForm, clearForm } from "./ui/todo-form";
 import { addItemToPage } from "./ui/project-page";
 import { findAndLoadPage, loadProjectListPage, loadProjectPage } from "./ui/page-load";
 import { events } from "./modules/pubsub";
-import { addProject } from "./ui/navigation";
+import { addProject, removeProjectFromNav } from "./ui/navigation";
 
 
 events.on("createNewProject", addProject);
@@ -16,6 +17,7 @@ events.on("createNewProject", addToList);
 events.on("createNewProject", loadProjectPage);
 events.on("creatToDo", clearForm);
 events.on("createToDo", addItemToPage);
+events.on("projectDeletion", removeProjectFromNav)
 
 const projectList = [];
 
@@ -61,5 +63,19 @@ main.addEventListener("submit", e => {
         case "create-project":
             createProjectFromForm(form, projectList);
             break;
+    }
+})
+
+main.addEventListener("click", e => {
+    const target = e.target;
+
+    if ( target.nodeName === "BUTTON" ) {
+        const targetClassName = target.className;
+
+        switch (targetClassName) {
+            case "delete-project":
+                deleteProject(target, projectList);
+                break;
+        }
     }
 })
