@@ -37,6 +37,7 @@ function appendToList(ul, item, containerName) {
 }
 
 function createListItem(title, date, containerName) {
+    const li = document.createElement("li");
     const itemContainer = createContainer(containerName);
     const itemName = createItemName("to-do-link", title);
     const itemDate = createItemDate(date);
@@ -48,7 +49,9 @@ function createListItem(title, date, containerName) {
         buttons
     )
 
-    return itemContainer;
+    li.append(itemContainer)
+
+    return li;
 }
 
 function createItemDate(date) {
