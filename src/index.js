@@ -3,7 +3,8 @@ import { format } from "date-fns";
 
 import createProject from "./modules/project";
 import createToDoItem from "./modules/todo";
-import findAndLoadPage from "./ui/page-load";
+import { createProjectFromForm } from "./ui/project-form";
+import { findAndLoadPage } from "./ui/page-load";
 import { events } from "./modules/pubsub";
 import { addProject } from "./ui/navigation";
 
@@ -34,3 +35,24 @@ nav.addEventListener("click", e => {
         findAndLoadPage(projectList, navTarget);
     }
 });
+
+const main = document.querySelector("main");
+
+main.addEventListener("submit", e => {
+    e.preventDefault()
+
+    const form = document.querySelector("form");
+    const targetClassName = e.submitter.className;
+
+    switch (targetClassName) {
+        case "add-checklist":
+            console.log("add checklist");
+            break;
+        case "create-to-do":
+            console.log("to do");
+            break;
+        case "create-project":
+            createProjectFromForm(form, projectList);
+            break;
+    }
+})

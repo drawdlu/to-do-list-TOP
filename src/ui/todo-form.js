@@ -8,7 +8,7 @@ export default function createForm() {
     const date = createInputFormField("date", "date", "Date (required): ");
     const notes = createTextAreaField("notes", "Notes: ");
     const checklistButton = createButtonField("add-checklist", "Add Checklist");
-    const submitButton = createButtonField("submit", "Create");
+    const submitButton = createButtonField("create-to-do", "Create");
 
     formElement.append(
         title,

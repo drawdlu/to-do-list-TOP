@@ -1,13 +1,13 @@
 import createProjectsOverview from "./projects-overview";
 import createProjectPage from "./project-page";
-import createProjectForm from "./project-form";
+import { createProjectForm } from "./project-form";
 
 const pages = {
     "projects": createProjectsOverview,
     "create-project": createProjectForm
 }
 
-export default function findAndLoadPage(projectList, button) {
+export function findAndLoadPage(projectList, button) {
     if (button.classList.contains("project-link")) {
         const project = findProject(projectList, button.textContent);
         loadProjectPage(project);
@@ -25,7 +25,7 @@ function loadNavPage(projectList, button) {
     contentDiv.append(page);
 }
 
-function loadProjectPage(project) {
+export function loadProjectPage(project) {
     const contentDiv = getContentDiv();
     const projectPage = createProjectPage(project);
 

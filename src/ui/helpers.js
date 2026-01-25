@@ -44,6 +44,7 @@ function createInput(id, type) {
     const input = document.createElement("input");
     input.setAttribute("type", type);
     input.setAttribute("id", id);
+    input.setAttribute("name", id);
 
     return input;
 }
