@@ -1,6 +1,5 @@
 import { createContainer, createInputFormField, createButtonField, addRequired } from "./helpers";
 import createProject from "../modules/project";
-import { loadProjectPage } from "./page-load";
 
 export function createProjectForm() {
     const container = createContainer("project-form");
@@ -26,7 +25,6 @@ export function createProjectFromForm(form, projectList) {
         alert("Name Required");
     } else {
         const newProject = createProject(newProjectName);
-        loadProjectPage(newProject);
     }   
 
 }

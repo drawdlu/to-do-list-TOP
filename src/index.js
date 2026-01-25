@@ -5,7 +5,7 @@ import createProject from "./modules/project";
 import createToDoItem from "./modules/todo";
 import { createProjectFromForm } from "./ui/project-form";
 import { createToDoFromForm } from "./ui/todo-form";
-import { findAndLoadPage, loadProjectListPage } from "./ui/page-load";
+import { findAndLoadPage, loadProjectListPage, loadProjectPage } from "./ui/page-load";
 import { events } from "./modules/pubsub";
 import { addProject } from "./ui/navigation";
 
@@ -17,6 +17,7 @@ function addToList(project) {
 
 events.on("createNewProject", addProject);
 events.on("createNewProject", addToList);
+events.on("createNewProject", loadProjectPage);
 
 function createDefaultProject() {
     const defaultProject = createProject("Default");
