@@ -73,3 +73,8 @@ export function createItemName(className, title) {
     return nameContainer;
 
 }
+
+export function addRequired(inputField) {
+    const input = inputField.querySelector("input");
+    input.setAttribute("required", "");
+}

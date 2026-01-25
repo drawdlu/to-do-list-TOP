@@ -1,4 +1,4 @@
-import { createContainer, createInputFormField, createButtonField } from "./helpers";
+import { createContainer, createInputFormField, createButtonField, addRequired } from "./helpers";
 import createProject from "../modules/project";
 import { loadProjectPage } from "./page-load";
 
@@ -7,8 +7,9 @@ export function createProjectForm() {
     const form = document.createElement("form");
     const nameField = createInputFormField("name", "text", "Project Name: ");
     const buttonField = createButtonField("create-project", "Create");
-
-    container.append(form)
+    
+    addRequired(nameField);
+    container.append(form);
     form.append(nameField, buttonField);
 
     return container;
@@ -21,6 +22,8 @@ export function createProjectFromForm(form, projectList) {
 
     if (projectExists(newProjectName, projectList)) {
         alert("This project already exists");
+    } else if ( newProjectName.trimStart() === "" ) {
+        alert("Name Required");
     } else {
         const newProject = createProject(newProjectName);
         loadProjectPage(newProject);
