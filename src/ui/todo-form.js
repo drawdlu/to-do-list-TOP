@@ -1,6 +1,5 @@
 import { createContainer, createInputFormField, createButtonField, createLabel, findProject, addRequired } from "./helpers"
 import createToDo from "../modules/todo";
-import { addItemToPage } from "./project-page";
 
 export default function createForm() {
     const formContainer = createFormContainer();
@@ -63,8 +62,6 @@ export function createToDoFromForm(form, projectList) {
     if ( !formIncomplete(todo) ) {
         const newToDo = createToDo(todo.title, todo.description, todo.date, todo.notes);
         project.addItem(newToDo);
-        addItemToPage(newToDo.title.value, newToDo.dueDate.value);
-        clearForm(form);
     }
 }
 
@@ -79,11 +76,11 @@ function formIncomplete(form) {
     }
 }
 
-function clearForm(form) {
-    const title = form.querySelector("input#title");
-    const description = form.querySelector("textarea#description");
-    const date = form.querySelector("input#date");
-    const notes = form.querySelector("textarea#notes");
+export function clearForm() {
+    const title = document.querySelector("input#title");
+    const description = document.querySelector("textarea#description");
+    const date = document.querySelector("input#date");
+    const notes = document.querySelector("textarea#notes");
     clearInputs(title, description, date, notes);
 }
 

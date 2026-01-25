@@ -72,9 +72,9 @@ function createDueDateSpan() {
     return span;
 }
 
-export function addItemToPage(title, date) {
+export function addItemToPage(todo) {
     const ul = document.querySelector(".project-list ul");
-    const newItem = createListItem(title, date, "todo-item");
+    const newItem = createListItem(todo.title.value, todo.dueDate.value, "todo-item");
 
     ul.append(newItem);
 }

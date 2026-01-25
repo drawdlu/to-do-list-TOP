@@ -1,4 +1,5 @@
 import { parse, isPast } from "date-fns";
+import { events } from "./pubsub";
 
 export default function createToDoItem(title, description, dueDate, notes = "") {
     let completed = false;
@@ -11,7 +12,7 @@ export default function createToDoItem(title, description, dueDate, notes = "") 
         priorityIndex = (priorityIndex + 1) % priority.length;
     };
 
-    return { 
+    const todo =  { 
         title: createText(title),
         description: createText(description),
         notes: createText(notes),
@@ -22,6 +23,10 @@ export default function createToDoItem(title, description, dueDate, notes = "") 
         toggle,
         togglePriority
     };
+
+    events.emit("createToDo", todo);
+
+    return todo;
 }
 
 function createDate(initialValue) {

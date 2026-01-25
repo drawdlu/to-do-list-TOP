@@ -4,20 +4,24 @@ import { format } from "date-fns";
 import createProject from "./modules/project";
 import createToDoItem from "./modules/todo";
 import { createProjectFromForm } from "./ui/project-form";
-import { createToDoFromForm } from "./ui/todo-form";
+import { createToDoFromForm, clearForm } from "./ui/todo-form";
+import { addItemToPage } from "./ui/project-page";
 import { findAndLoadPage, loadProjectListPage, loadProjectPage } from "./ui/page-load";
 import { events } from "./modules/pubsub";
 import { addProject } from "./ui/navigation";
+
+
+events.on("createNewProject", addProject);
+events.on("createNewProject", addToList);
+events.on("createNewProject", loadProjectPage);
+events.on("creatToDo", clearForm);
+events.on("createToDo", addItemToPage);
 
 const projectList = [];
 
 function addToList(project) {
     projectList.push(project);
 }
-
-events.on("createNewProject", addProject);
-events.on("createNewProject", addToList);
-events.on("createNewProject", loadProjectPage);
 
 function createDefaultProject() {
     const defaultProject = createProject("Default");
