@@ -2,19 +2,26 @@ import { format } from "date-fns";
 import createForm from "./todo-form";
 import { createContainer, createButtonField, createList, createItemName } from "./helpers";
 
-export default function createProjectPage(project) {
+export function createProjectPage(project) {
     const projectContainer = createContainer("project-container");
     const titleHeading = createProjectHeading(project.name);
-    const form = createForm();
+    const formDiv = createForm();
     const list = createList("project-list", "todo-item", project.list, appendToList);
+
+    addNameToForm(formDiv, project.name);
 
     projectContainer.append(
         titleHeading,
-        form,
+        formDiv,
         list
     );
 
     return projectContainer;
+}
+
+function addNameToForm(formDiv, projectName) {
+    const form = formDiv.querySelector("form");
+    form.dataset.projectName = projectName;
 }
 
 function createProjectHeading(name) {
@@ -31,7 +38,7 @@ function appendToList(ul, item, containerName) {
 
 function createListItem(title, date, containerName) {
     const itemContainer = createContainer(containerName);
-    const itemName = createItemName("to-do-item", title);
+    const itemName = createItemName("to-do-link", title);
     const itemDate = createItemDate(date);
     const buttons = createButtonField("delete", "Delete");
 
@@ -60,4 +67,11 @@ function createDueDateSpan() {
     span.textContent = "Due Date: ";
 
     return span;
+}
+
+export function addItemToPage(title, date) {
+    const ul = document.querySelector(".project-list ul");
+    const newItem = createListItem(title, date, "todo-item");
+
+    ul.append(newItem);
 }

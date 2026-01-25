@@ -74,7 +74,22 @@ export function createItemName(className, title) {
 
 }
 
-export function addRequired(inputField) {
-    const input = inputField.querySelector("input");
-    input.setAttribute("required", "");
+export function addRequired(...fields) {
+    for ( const field of fields ) {
+        let input = field.querySelector("input");
+
+        if ( input === null ) {
+            input = field.querySelector("textarea");
+        }
+        
+        input.setAttribute("required", "");
+    }
+
+}
+
+export function findProject(projectList, text) {
+    const projectListNames = projectList.map( (project) => project.name );
+    const index = projectListNames.indexOf(text)
+
+    return projectList[index]
 }

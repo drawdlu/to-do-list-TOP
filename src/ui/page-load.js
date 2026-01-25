@@ -1,6 +1,7 @@
 import createProjectsOverview from "./projects-overview";
-import createProjectPage from "./project-page";
+import { createProjectPage } from "./project-page";
 import { createProjectForm } from "./project-form";
+import { findProject } from "./helpers";
 
 const pages = {
     "projects": createProjectsOverview,
@@ -39,13 +40,6 @@ function getContentDiv() {
 
 function clearDiv(div) {
     div.textContent = "";
-}
-
-function findProject(projectList, text) {
-    const projectListNames = projectList.map( (project) => project.name );
-    const index = projectListNames.indexOf(text)
-
-    return projectList[index]
 }
 
 export function loadProjectListPage(projectList) {

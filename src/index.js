@@ -4,6 +4,7 @@ import { format } from "date-fns";
 import createProject from "./modules/project";
 import createToDoItem from "./modules/todo";
 import { createProjectFromForm } from "./ui/project-form";
+import { createToDoFromForm } from "./ui/todo-form";
 import { findAndLoadPage, loadProjectListPage } from "./ui/page-load";
 import { events } from "./modules/pubsub";
 import { addProject } from "./ui/navigation";
@@ -19,7 +20,7 @@ events.on("createNewProject", addToList);
 
 function createDefaultProject() {
     const defaultProject = createProject("Default");
-    const currentDate = format(new Date(), "LLLL d, y");
+    const currentDate = format(new Date(), "y-M-d");
     const defatultToDo = createToDoItem("Default Task", "This is a sample", currentDate);
     defaultProject.addItem(defatultToDo);
 }
@@ -50,7 +51,7 @@ main.addEventListener("submit", e => {
             console.log("add checklist");
             break;
         case "create-to-do":
-            console.log("to do");
+            createToDoFromForm(form, projectList);
             break;
         case "create-project":
             createProjectFromForm(form, projectList);

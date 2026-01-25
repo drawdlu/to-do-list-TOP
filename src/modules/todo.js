@@ -25,7 +25,7 @@ export default function createToDoItem(title, description, dueDate, notes = "") 
 }
 
 function createDate(initialValue) {
-    let value = parse(initialValue, "LLLL d, y", new Date());
+    let value = parse(initialValue, "y-M-d", new Date());
 
     const edit = (newValue) => ( value = newValue );
 
