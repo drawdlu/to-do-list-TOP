@@ -62,6 +62,7 @@ export function createToDoFromForm(form, projectList) {
     if ( !formIncomplete(todo) ) {
         const newToDo = createToDo(todo.title, todo.description, todo.date, todo.notes);
         project.addItem(newToDo);
+        clearForm();
     }
 }
 
