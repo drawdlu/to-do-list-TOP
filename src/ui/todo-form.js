@@ -1,5 +1,6 @@
 import { createContainer, createInputFormField, createButtonField, createLabel, findProject, addRequired } from "./helpers"
 import createToDo from "../modules/todo";
+import { format } from "date-fns";
 
 export default function createForm() {
     const formContainer = createFormContainer();
@@ -11,6 +12,7 @@ export default function createForm() {
     const submitButton = createButtonField("create-to-do", "Create");
 
     addRequired(title, description, date);
+    setMinDate(date);
 
     formElement.append(
         title,
@@ -21,6 +23,14 @@ export default function createForm() {
     );
 
     return formContainer;
+}
+
+function setMinDate(dateContainer) {
+    dateContainer.querySelector("input").setAttribute("min", getDateToday());
+}
+
+function getDateToday() {
+    return format(new Date(), "y-MM-d");
 }
 
 function createFormContainer() {
