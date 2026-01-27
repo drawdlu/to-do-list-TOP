@@ -1,5 +1,5 @@
 import { createContainer, createInputFormField, createButtonField, addRequired } from "./helpers";
-import createProject from "../modules/project";
+import { createProject } from "../modules/project";
 
 export function createProjectForm() {
     const container = createContainer("project-form");

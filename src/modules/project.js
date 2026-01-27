@@ -1,6 +1,6 @@
 import { events } from "./pubsub";
 
-export default function createProject(projectName) {
+export function createProject(projectName) {
     let name = projectName;
     let list = [];
 
@@ -32,4 +32,11 @@ export default function createProject(projectName) {
     events.emit("createNewProject", project);
 
     return project;
+}
+
+export function removeTask(data) { 
+    const project = data.project;
+    const title = data.taskTitle;
+
+    project.removeItem(title);
 }

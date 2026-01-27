@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import createForm from "./todo-form";
 import { createContainer, createButtonField, createList, createItemName, findProject } from "./helpers";
+import { events } from "../modules/pubsub";
 
 export function createProjectPage(project) {
     const projectContainer = createContainer("project-container");
@@ -87,7 +88,7 @@ export function deleteTask(target, projectList) {
     const project = findProject(projectList, projectName);
 
     container.remove();
-    project.removeItem(taskTitle);
+    events.emit("deleteTask", {project, taskTitle});
 }
 
 function getProjectName() {

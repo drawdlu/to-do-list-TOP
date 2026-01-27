@@ -1,7 +1,7 @@
 import "./styles.css";
 import { format } from "date-fns";
 
-import createProject from "./modules/project";
+import { createProject, removeTask } from "./modules/project";
 import createToDoItem from "./modules/todo";
 import { deleteProject } from "./ui/projects-overview";
 import { createProjectFromForm } from "./ui/project-form";
@@ -18,6 +18,7 @@ events.on("createNewProject", loadProjectPage);
 events.on("creatToDo", clearForm);
 events.on("createToDo", addItemToPage);
 events.on("projectDeletion", removeProjectFromNav)
+events.on("deleteTask", removeTask);
 
 const projectList = [];
 
