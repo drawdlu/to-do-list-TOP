@@ -15,7 +15,7 @@ import { addProject, removeProjectFromNav } from "./ui/navigation";
 events.on("createNewProject", addProject);
 events.on("createNewProject", addToList);
 events.on("createNewProject", loadProjectPage);
-events.on("creatToDo", clearForm);
+events.on("createToDo", clearForm);
 events.on("createToDo", addItemToPage);
 events.on("projectDeletion", removeProjectFromNav)
 events.on("deleteTask", removeTask);
