@@ -80,6 +80,9 @@ main.addEventListener("click", e => {
             case "delete-task":
                 deleteTask(target, projectList)
                 break;
+            case "project-link":
+                findAndLoadPage(projectList, target);
+                break;
         }
     }
 })
