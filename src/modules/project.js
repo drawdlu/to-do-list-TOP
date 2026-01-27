@@ -8,9 +8,17 @@ export default function createProject(projectName) {
 
     const addItem = (newToDo) => { list.push(newToDo) };
 
-    const removeItem = (toDoItem) => {
+    const removeItem = (toDoName) => {
+        const toDoItem = getToDoFromName(toDoName);
         const itemIndex = list.indexOf(toDoItem);
         list.splice(itemIndex, 1);
+    }
+
+    const getToDoFromName = (toDoName) => {
+        const listTitles = list.map( (toDo) => toDo.title.value );
+        const indexOfToDo = listTitles.indexOf(toDoName);
+        
+        return list[indexOfToDo];
     }
     
     const project =  {

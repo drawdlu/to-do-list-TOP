@@ -6,7 +6,7 @@ import createToDoItem from "./modules/todo";
 import { deleteProject } from "./ui/projects-overview";
 import { createProjectFromForm } from "./ui/project-form";
 import { createToDoFromForm, clearForm } from "./ui/todo-form";
-import { addItemToPage } from "./ui/project-page";
+import { addItemToPage, deleteTask } from "./ui/project-page";
 import { findAndLoadPage, loadProjectListPage, loadProjectPage } from "./ui/page-load";
 import { events } from "./modules/pubsub";
 import { addProject, removeProjectFromNav } from "./ui/navigation";
@@ -75,6 +75,9 @@ main.addEventListener("click", e => {
         switch (targetClassName) {
             case "delete-project":
                 deleteProject(target, projectList);
+                break;
+            case "delete-task":
+                deleteTask(target, projectList)
                 break;
         }
     }

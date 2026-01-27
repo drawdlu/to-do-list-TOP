@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import createForm from "./todo-form";
-import { createContainer, createButtonField, createList, createItemName } from "./helpers";
+import { createContainer, createButtonField, createList, createItemName, findProject } from "./helpers";
 
 export function createProjectPage(project) {
     const projectContainer = createContainer("project-container");
@@ -27,6 +27,7 @@ function addNameToForm(formDiv, projectName) {
 function createProjectHeading(name) {
     const h2 = document.createElement("h2");
     h2.textContent = name;
+    h2.classList.add("project-name-header");
 
     return h2;
 }
@@ -41,7 +42,7 @@ function createListItem(title, date, containerName) {
     const itemContainer = createContainer(containerName);
     const itemName = createItemName("to-do-link", title);
     const itemDate = createItemDate(date);
-    const buttons = createButtonField("delete", "Delete");
+    const buttons = createButtonField("delete-task", "Delete");
 
     itemContainer.append(
         itemName,
@@ -77,4 +78,30 @@ export function addItemToPage(todo) {
     const newItem = createListItem(todo.title.value, todo.dueDate.value, "todo-item");
 
     ul.append(newItem);
+}
+
+export function deleteTask(target, projectList) {
+    const container = getContainer(target);
+    const projectName = getProjectName();
+    const taskTitle = getTaskNameFromContainer(container);
+    const project = findProject(projectList, projectName);
+
+    container.remove();
+    project.removeItem(taskTitle);
+}
+
+function getProjectName() {
+    const header = document.querySelector("h2.project-name-header");
+
+    return header.textContent;
+}
+
+function getTaskNameFromContainer(container) {
+    const titleButton = container.querySelector(".todo-item button.to-do-link");
+    
+    return titleButton.textContent;
+}
+
+function getContainer(targetButton) {
+    return targetButton.parentElement.parentElement.parentElement;
 }
