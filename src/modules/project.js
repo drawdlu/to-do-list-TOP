@@ -26,7 +26,8 @@ export function createProject(projectName) {
         get list() { return [...list] },
         editName,
         addItem,
-        removeItem
+        removeItem,
+        getToDoFromName
     };
 
     events.emit("createNewProject", project);

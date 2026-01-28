@@ -7,7 +7,7 @@ import { deleteProject } from "./ui/projects-overview";
 import { createProjectFromForm } from "./ui/project-form";
 import { createToDoFromForm, clearForm } from "./ui/todo-form";
 import { addItemToPage, deleteTask } from "./ui/project-page";
-import { findAndLoadPage, loadProjectListPage, loadProjectPage } from "./ui/page-load";
+import { findAndLoadPage, loadProjectListPage, loadProjectPage, loadTaskPage } from "./ui/page-load";
 import { events } from "./modules/pubsub";
 import { addProject, removeProjectFromNav } from "./ui/navigation";
 
@@ -29,7 +29,7 @@ function addToList(project) {
 function createDefaultProject() {
     const defaultProject = createProject("Default");
     const currentDate = format(new Date(), "y-M-d");
-    const defatultToDo = createToDoItem("Default Task", "This is a sample", currentDate);
+    const defatultToDo = createToDoItem("Default Task", "This is a sample description", currentDate, "This is a sample note");
     defaultProject.addItem(defatultToDo);
 }
 
@@ -82,6 +82,9 @@ main.addEventListener("click", e => {
                 break;
             case "project-link":
                 findAndLoadPage(projectList, target);
+                break;
+            case "to-do-link":
+                loadTaskPage(target, projectList);
                 break;
         }
     }

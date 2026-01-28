@@ -93,3 +93,9 @@ export function findProject(projectList, text) {
 
     return projectList[index]
 }
+
+export function getProjectName() {
+    const header = document.querySelector("h2.project-name-header");
+
+    return header.textContent;
+}

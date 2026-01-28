@@ -1,7 +1,8 @@
 import { createProjectsOverview } from "./projects-overview";
 import { createProjectPage } from "./project-page";
 import { createProjectForm } from "./project-form";
-import { findProject } from "./helpers";
+import { findProject, getProjectName } from "./helpers";
+import { createTaskPage } from "./to-do-page";
 
 const pages = {
     "projects": createProjectsOverview,
@@ -48,4 +49,31 @@ export function loadProjectListPage(projectList) {
 
     clearDiv(contentDiv);
     contentDiv.append(projectListPage);
+}
+
+export function loadTaskPage(button, projectList) {
+    const taskPage = getTaskPage(button, projectList);
+    const content = document.querySelector("main .content");
+
+    clearDiv(content);
+    content.append(taskPage);
+}
+
+function getTaskPage(button, projectList) {
+    const project = getProject(projectList);
+    const toDo = getToDO(button, project);
+
+    return createTaskPage(toDo, project);
+}
+
+function getProject(projectList) {
+    const projectName = getProjectName();
+    
+    return findProject(projectList, projectName);
+}
+
+function getToDO(button, project) {
+    const toDoName = button.textContent;
+
+    return project.getToDoFromName(toDoName);
 }

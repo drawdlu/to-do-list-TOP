@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import createForm from "./todo-form";
-import { createContainer, createButtonField, createList, createItemName, findProject } from "./helpers";
+import { createContainer, createButtonField, createList, createItemName, findProject, getProjectName } from "./helpers";
 import { events } from "../modules/pubsub";
 
 export function createProjectPage(project) {
@@ -89,12 +89,6 @@ export function deleteTask(target, projectList) {
 
     container.remove();
     events.emit("deleteTask", {project, taskTitle});
-}
-
-function getProjectName() {
-    const header = document.querySelector("h2.project-name-header");
-
-    return header.textContent;
 }
 
 function getTaskNameFromContainer(container) {
