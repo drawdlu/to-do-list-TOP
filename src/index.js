@@ -55,9 +55,6 @@ main.addEventListener("submit", e => {
     const targetClassName = e.submitter.className;
 
     switch (targetClassName) {
-        case "add-checklist":
-            console.log("add checklist");
-            break;
         case "create-to-do":
             createToDoFromForm(form, projectList);
             break;
