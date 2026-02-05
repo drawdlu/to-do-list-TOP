@@ -92,7 +92,7 @@ export function deleteTask(target, projectList) {
 }
 
 function getTaskNameFromContainer(container) {
-    const titleButton = container.querySelector(".todo-item button.to-do-link");
+    const titleButton = container.querySelector(".todo-item .name button");
     
     return titleButton.textContent;
 }

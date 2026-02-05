@@ -15,18 +15,18 @@ export function createInputFormField(id, inputType, labelText) {
     return container;
 }
 
-export function createButtonField(className, text) {
+export function createButtonField(dataAction, text) {
     const container = createContainer("buttons");
-    const button = createButton(className, text);
+    const button = createButton(dataAction, text);
 
     container.append(button);
 
     return container;
 }
 
-export function createButton(className, text) {
+export function createButton(dataAction, text) {
     const button = document.createElement("button");
-    button.classList.add(className);
+    button.dataset.action = dataAction;
     button.textContent = text;
 
     return button;

@@ -52,9 +52,9 @@ main.addEventListener("submit", e => {
     e.preventDefault()
 
     const form = document.querySelector("form");
-    const targetClassName = e.submitter.className;
+    const targetDataAction = e.submitter.dataset.action;
 
-    switch (targetClassName) {
+    switch (targetDataAction) {
         case "create-to-do":
             createToDoFromForm(form, projectList);
             break;
@@ -68,9 +68,9 @@ main.addEventListener("click", e => {
     const target = e.target;
 
     if ( target.nodeName === "BUTTON" ) {
-        const targetClassName = target.className;
+        const targetDataAction = target.dataset.action;
 
-        switch (targetClassName) {
+        switch (targetDataAction) {
             case "delete-project":
                 deleteProject(target, projectList);
                 break;

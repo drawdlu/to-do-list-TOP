@@ -10,16 +10,16 @@ const pages = {
 }
 
 export function findAndLoadPage(projectList, button) {
-    if (button.classList.contains("project-link")) {
+    if (button.dataset.action === "project-link" ) {
         const project = findProject(projectList, button.textContent);
         loadProjectPage(project);
     } else {
-        loadNavPage(projectList, button)
+        loadNavPage(projectList, button);
     }
 }
 
 function loadNavPage(projectList, button) {
-    const pageId = button.dataset.page;
+    const pageId = button.dataset.action;
     const contentDiv = getContentDiv();
     const page = pages[pageId](projectList);
 
